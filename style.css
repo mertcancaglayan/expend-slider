@@ -1,3 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Besley:wght@400;500&family=Honk&family=Nabla&family=Noto+Sans+KR:wght@100;300&family=Roboto:wght@300&family=Rokkitt:wght@200&display=swap");
+@import url("https://fonts.cdnfonts.com/css/the-amazing-spider-man");
+
+@font-face {
+	font-family: "GOW";
+	src: url("font/GODOFWAR.ttf") format("woff2");
+}
+@font-face {
+	font-family: "League";
+	src: url("font/League.otf") format("woff2");
+}
+@font-face {
+	font-family: "rdr";
+	src: url("font/rdr.TTF") format("woff2");
+}
+@font-face {
+	font-family: "witcher";
+	src: url("font/witcher.ttf") format("woff2");
+}
+
+@font-face {
+	font-family: "gta";
+	src: url("font/gta.ttf") format("woff2");
+}
+
+@font-face {
+	font-family: "cyberpunk";
+	src: url("font/Cyberpunk.ttf") format("woff2");
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -6,6 +36,7 @@
 
 body {
 	height: 100vh;
+	overflow: hidden;
 }
 
 .slider {
@@ -30,24 +61,39 @@ body {
 	flex-direction: column;
 	position: absolute;
 	top: 10%;
-	left: 50%;
+	left: 10%;
 	width: 80%;
-	transform: translateX(-50%);
-	padding: 0 20px 0 0;
 	color: #fff;
 	text-shadow: 0 5px 10px rgb(0, 0, 0);
-	font-size: 1.5rem;
 	background-color: #0002;
-	padding: 10px 20px;
+	padding: 30px 20px;
 	border-radius: 10px;
-	transition: 0.5s ease-in-out;
+	transform: translateY(75px);
+	filter: blur(20px);
+	opacity: 0;
+	animation: show 1s linear 1 forwards;
+}
+
+@keyframes show {
+	to {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(0);
+	}
 }
 
 .slider .image-container .content:hover {
 	background-color: #0007;
+	transition: 0.5s ease-in-out;
 }
 
+.slider .image-container .content h3 {
+	transition: 1.2s ease-in-out;
+	font-size: 1.5rem;
+	margin: 0 auto 15px;
+}
 .slider .image-container .content p {
+	transition: 1.4s ease-in-out;
 	font-size: 1.2rem;
 }
 
@@ -66,6 +112,8 @@ body {
 	height: 110px;
 	flex-shrink: 0;
 	position: relative;
+	overflow: hidden;
+	border-radius: 10px;
 }
 
 .thumbnails .thumbnail-image img {
@@ -100,3 +148,41 @@ body {
 .navigation-buttons #next:hover {
 	background-color: #fff;
 }
+
+.slider .image-container:nth-child(1) {
+	z-index: 1;
+}
+
+#cyberpunk {
+	font-family: "cyberpunk";
+	color: rgb(184, 223, 106);
+}
+
+#league {
+	font-family: "League";
+}
+
+#rdr {
+	font-family: "rdr";
+}
+
+#spider-man {
+	font-family: "THE AMAZING SPIDER-MAN", sans-serif;
+}
+
+#witcher {
+	font-family: "witcher";
+}
+
+#gow {
+	font-family: "GOW";
+}
+
+#gta {
+	font-family: "gta";
+	font-size: 4rem;
+	color: rgb(211, 206, 199);
+	letter-spacing: 3px;
+	text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+}
+

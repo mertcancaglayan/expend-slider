@@ -37,26 +37,107 @@
 body {
 	height: 100vh;
 	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #000;
 }
 
 .slider {
+	position: absolute;
+	width: max-content;
+	display: flex;
+	gap: 20px;
+	right: 20px;
+	bottom: 20px;
+}
+
+.image-container {
+	width: 75px;
+	height: 110px;
+	z-index: 1;
+	transition: 0.8s ease;
+	overflow: hidden;
+	position: fixed;
+}
+
+.image-container.grow-animation {
+	animation: grow 0.8s linear forwards;
+}
+
+@keyframes grow {
+	from {
+		bottom: 20px;
+		width: 75px;
+		height: 110px;
+	}
+	to {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		width: 100vw;
+		height: 100vh;
+		border-radius: 0;
+	}
+}
+
+.image-container:first-child,
+.image-container:nth-child(2) {
+	position: fixed;
+	right: 0;
+	bottom: 0;
 	width: 100vw;
 	height: 100vh;
-	overflow: hidden;
+	border-radius: 0;
+	z-index: 1;
 }
 
-.slider .image-container {
-	position: absolute;
-	inset: 0 0 0 0;
+.image-container:not(:first-child):not(:nth-child(2)) {
+	border-radius: 10px;
 }
 
-.slider .image-container img {
+.image-container:not(:first-child):not(:nth-child(2)):hover {
+	transform: scale(1.2);
+}
+
+.image-container:nth-child(3) {
+	right: 305px;
+	bottom: 20px;
+	cursor: pointer;
+}
+
+.image-container:nth-child(4) {
+	right: 210px;
+	bottom: 20px;
+	cursor: pointer;
+}
+
+.image-container:nth-child(5) {
+	right: 115px;
+	bottom: 20px;
+	cursor: pointer;
+}
+
+.image-container:nth-child(6) {
+	right: 20px;
+	bottom: 20px;
+	z-index: 3;
+	cursor: pointer;
+}
+
+.image-container:nth-child(7) {
+	right: -95px;
+	bottom: 20px;
+	cursor: pointer;
+}
+
+.image-container img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-.slider .image-container .content {
+.image-container .content {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
@@ -71,7 +152,11 @@ body {
 	transform: translateY(75px);
 	filter: blur(20px);
 	opacity: 0;
-	animation: show 1s linear 1 forwards;
+	animation: show 0.5s linear 0.2s forwards;
+}
+
+.image-container:not(:nth-child(2)) .content {
+	display: none;
 }
 
 @keyframes show {
@@ -82,44 +167,19 @@ body {
 	}
 }
 
-.slider .image-container .content:hover {
+.image-container .content:hover {
 	background-color: #0007;
 	transition: 0.5s ease-in-out;
 }
 
-.slider .image-container .content h3 {
+.image-container .content h3 {
 	transition: 1.2s ease-in-out;
 	font-size: 1.5rem;
 	margin: 0 auto 15px;
 }
-.slider .image-container .content p {
+.image-container .content p {
 	transition: 1.4s ease-in-out;
 	font-size: 1.2rem;
-}
-
-.thumbnails {
-	position: absolute;
-	bottom: 50px;
-	left: 50%;
-	width: max-content;
-	z-index: 99;
-	display: flex;
-	gap: 20px;
-}
-
-.thumbnails .thumbnail-image {
-	width: 75px;
-	height: 110px;
-	flex-shrink: 0;
-	position: relative;
-	overflow: hidden;
-	border-radius: 10px;
-}
-
-.thumbnails .thumbnail-image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
 }
 
 .navigation-buttons {
@@ -185,4 +245,3 @@ body {
 	letter-spacing: 3px;
 	text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
 }
-

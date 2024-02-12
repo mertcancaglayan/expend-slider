@@ -19,6 +19,12 @@ items.forEach((item) => {
 		if (clicked === false) {
 			clicked = true;
 
+			const index = Array.from(item.parentNode.children).indexOf(item);
+			if (index < 2) {
+				clicked = false;
+				return;
+			}
+
 			const firstChild = document.querySelector(".image-container:nth-child(1)");
 			const thirdChild = document.querySelector(".image-container:nth-child(3)");
 

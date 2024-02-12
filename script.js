@@ -29,17 +29,16 @@ items.forEach((item) => {
 			const thirdChild = document.querySelector(".image-container:nth-child(3)");
 
 			const originalRight = window.getComputedStyle(item).getPropertyValue("right");
-            item.classList.add("grow-animation");
-            
-            document.querySelector(".image-container.grow-animation").style.right = originalRight
+			item.classList.add("grow-animation");
 
+			document.querySelector(".image-container.grow-animation").style.right = originalRight;
 
 			const animationDuration =
 				parseFloat(window.getComputedStyle(item).getPropertyValue("animation-duration")) * 1000;
 
 			setTimeout(() => {
 				item.classList.remove("grow-animation");
-                item.style.removeProperty("right");
+				item.style.removeProperty("right");
 			}, animationDuration + 100);
 
 			document.querySelector(".slider").insertBefore(item, thirdChild);
@@ -50,4 +49,33 @@ items.forEach((item) => {
 			}, animationDuration + 300);
 		}
 	});
+});
+
+let intervalId;
+
+function startCarousel(param) {
+    if (param === false) {
+        clearInterval(intervalId);
+    } else {
+        intervalId = setInterval(() => {
+            nextBtn.click(); 
+        }, 5000);
+    }
+}
+
+const playButton = document.querySelector(".play-button");
+
+playButton.addEventListener("click", () => {
+	const playIcon = playButton.querySelector("#play");
+	const icon = playIcon.querySelector("i");
+
+	if (icon.classList.contains("fa-play")) {
+		icon.classList.remove("fa-play");
+		icon.classList.add("fa-pause");
+		startCarousel(true);
+	} else if (icon.classList.contains("fa-pause")) {
+		icon.classList.remove("fa-pause");
+		icon.classList.add("fa-play");
+		startCarousel(false);
+	}
 });
